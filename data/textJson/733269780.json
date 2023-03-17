@@ -1,0 +1,105 @@
+{
+	"0": [
+		[
+			{
+				"local": "./data/face/733269780/0.png",
+				"asface": true
+			}
+		]
+	],
+	"1": [
+		[
+			{
+				"type": "image",
+				"data": {
+					"file": "42d9f4919fce470136ace454db158c72.image",
+					"subType": "1",
+					"url": "https://gchat.qpic.cn/gchatpic_new/1678527416/733269780-2834314742-42D9F4919FCE470136ACE454DB158C72/0?term=2&is_origin=0",
+					"type": "image"
+				}
+			},
+			{
+				"type": "text",
+				"data": {
+					"text": "1111111111"
+				}
+			}
+		]
+	],
+	"23": [
+		[
+			{
+				"type": "image",
+				"data": {
+					"file": "03938551a7f077140d6a4e3a557ca62b.image",
+					"subType": "0",
+					"url": "https://gchat.qpic.cn/gchatpic_new/1678527416/733269780-2544838014-03938551A7F077140D6A4E3A557CA62B/0?term=2&is_origin=0"
+				}
+			},
+			{
+				"type": "text",
+				"data": {
+					"text": "123"
+				}
+			}
+		]
+	],
+	"78": [
+		[
+			{
+				"local": "./data/face/733269780/78.png",
+				"asface": true
+			}
+		]
+	],
+	"300": [
+		[
+			{
+				"type": "text",
+				"data": {
+					"text": "搞心态是吧"
+				}
+			},
+			{
+				"type": "text",
+				"data": {
+					"text": "/汪汪"
+				}
+			}
+		]
+	],
+	"3000": [
+		[
+			{
+				"type": "text",
+				"data": {
+					"text": "3000"
+				}
+			}
+		]
+	],
+	"02": [
+		[
+			{
+				"type": "image",
+				"data": {
+					"file": "1f6d5c622baa1096c00ffc91d51c1ba3.image",
+					"subType": "1",
+					"url": "https://gchat.qpic.cn/gchatpic_new/1678527416/733269780-3205307954-1F6D5C622BAA1096C00FFC91D51C1BA3/0?term=2&is_origin=0"
+				},
+				"local": "./data/face/733269780/02.png",
+				"asface": true
+			}
+		]
+	],
+	"2222222222222？？？？？？？": [
+		[
+			{
+				"type": "text",
+				"data": {
+					"text": "2222222222222？？？？？？？"
+				}
+			}
+		]
+	]
+}

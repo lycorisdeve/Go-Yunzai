@@ -1,0 +1,18 @@
+{
+  "--begin--": "该设备为随机生成，丢失后不能得到原先配置",
+  "product": "ILPP-05C2C",
+  "device": "505F6",
+  "board": "BEF51",
+  "brand": "000F",
+  "model": "ILPP D4FB",
+  "wifi_ssid": "HUAWEI-6df6ed6",
+  "bootloader": "U-boot",
+  "android_id": "IL.1574786.5601",
+  "boot_id": "09b65bc6-b102-a940-06c2-1cde926da211",
+  "proc_version": "Linux version 5.10.101-android12-9e6a4097",
+  "mac_address": "2D:35:FC:60:59:71",
+  "ip_address": "192.168.39.26",
+  "imei": "867133628764345",
+  "incremental": "C3CAB1C6D4",
+  "--end--": "修改后可能需要重新验证设备。"
+}

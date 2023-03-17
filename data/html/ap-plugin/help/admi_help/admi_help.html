@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="#" />
+  <link rel="preload" href="../../../../../plugins/ap-plugin/resources/common/font/HYWH-65W.woff" as="font" type="font/woff">
+  <link rel="preload" href="../../../../../plugins/ap-plugin/resources/common/font/NZBZ.woff" as="font" type="font/woff">
+  <link rel="preload" href="../../../../../plugins/ap-plugin/resources/common/font/tttgbnumber.woff" as="font" type="font/woff">
+  <link rel="stylesheet" type="text/css" href="../../../../../plugins/ap-plugin/resources/common/common.css" />
+  <title>yenai-plugin</title>
+  
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="../../../../../plugins/ap-plugin/resources//help/help.css"
+/>
+
+</head>
+
+<body class="elem-geo default-mode " style=transform:scale(2)>
+  <div class="container elem-bg" id="container">
+     
+<div class="geo log-cont">
+  <div class="cont">
+    
+    <div class="cont-title">管理</div>
+    
+    <div class="cont-body">
+      <ul class="log-ul">
+        
+        <li>
+          <p><span class="strong">#ap设置</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 查看当前ap策略</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap设置查水表</span>[<span class="strong">开启</span>|<span class="strong">关闭</span>]</p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 设置是否允许群员查水表</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap设置通知主人</span>[<span class="strong">开启</span>|<span class="strong">关闭</span>]</p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 开启后，有人绘制违规图片时将通知主人</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>[<span class="strong">全局</span>]<span class="strong">设置</span>[<span class="cmd">群号</span>|<span class="strong">私聊</span>]<span class="strong">次数</span>[<span class="cmd">数字</span>|<span class="strong">无限</span>]</p>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>[<span class="strong">全局</span>]<span class="strong">设置</span>[<span class="cmd">群号</span>|<span class="strong">私聊</span>] [<span class="strong">个人cd</span>|<span class="strong">群聊cd</span>|<span class="strong">撤回时间</span>]<span class="cmd">数字</span></p>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>[<span class="strong">全局</span>]<span class="strong">设置</span>[<span class="cmd">群号</span>|<span class="strong">私聊</span>] [<span class="strong">审核</span>|<span class="strong">撤回</span>|<span class="strong">封禁</span>] [<span class="strong">开启</span>|<span class="strong">关闭</span>]</p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 竖线表示不能共存，方括号中为可选内容(使用时不带方括号)</li>
+            
+            <li><span class="strong">全局</span>：此次配置对<span class="cmd">所有群</span>生效</li>
+            
+            <li><span class="strong">群号</span>：指定群号，此次配置对<span class="cmd">该群</span>生效</li>
+            
+            <li><span class="strong">私聊</span>：此次配置对<span class="cmd">私聊</span>生效</li>
+            
+            <li> ps:若未指定全局、群号、私聊，则此次配置对发送消息所在的<span class="cmd">当前群</span>生效</li>
+            
+            <li><span class="strong">次数</span>：设置每人每日限额，即每日可绘图的张数。每日0点刷新</li>
+            
+            <li><span class="strong">个人cd</span>：每个人绘图之后再次使用绘图需要等待的时间，单位是秒</li>
+            
+            <li><span class="strong">群聊cd</span>：整个群聊内共享的cd,群内有人使用绘图之后该群内再次使用绘图需要等待的时间，单位是秒</li>
+            
+            <li><span class="strong">撤回时间</span>：指定发送绘制的图片后多久自动撤回，单位是秒，最大<span class="cmd">120</span></li>
+            
+            <li><span class="strong">审核</span>：图片发送前，先使用百度图片审核服务检测图片安全性</li>
+            
+            <li><span class="strong">撤回</span>：图片发送后，经过指定的时间之后自动撤回</li>
+            
+            <li><span class="strong">封禁</span>：开启后，将封禁试图使用屏蔽词绘图的用户</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>[<span class="strong">添加</span>|<span class="strong">删除</span>]<span class="strong">屏蔽词</span></p>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap屏蔽词列表</span></p>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>[<span class="strong">封禁</span>|<span class="strong">解封</span>]  [<span class="cmd">qq号</span>|<span class="cmd">@某人</span>]</p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 被封禁的用户无法使用ap插件的功能</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#ap</span>设置存本地[<span class="strong">开启</span>|<span class="strong">关闭</span>]</p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 开启后绘制的图片将保存在云崽resources/yuhuo/aipainting目录下，用于<span class="cmd">查水表</span>等功能</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="strong">#撤回</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li> 对机器人的消息回复此命令,以撤回该消息</li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="geo log-cont">
+  <div class="cont">
+    
+    <div class="cont-title">配置</div>
+    
+    <div class="cont-body">
+      <ul class="log-ul">
+        
+        <li>
+          <p><span class="cmd">绘图接口管理</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li><span class="strong">#ap添加接口</span><span class="cmd">接口地址</span><span class="strong">备注</span><span class="cmd">我的接口 1</span>：添加一个接口</li>
+            
+            <li><span class="strong">#ap接口列表</span>：查看已添加的接口列表</li>
+            
+            <li><span class="strong">#ap设置接口</span><span class="cmd">接口编号</span>：更换默认接口</li>
+            
+            <li><span class="strong">#ap删除接口</span><span class="cmd">接口编号</span>：删除指定接口</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="cmd">图片处理接口</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li><span class="strong">#ap设置大清晰术接口</span><span class="cmd">接口地址</span>：配置大清晰术所用接口</li>
+            
+            <li><span class="strong">#ap设置鉴赏接口</span><span class="cmd">接口地址</span>：配置鉴赏(逆推图片tag)所用接口</li>
+            
+            <li><span class="strong">#ap设置检查ai接口</span><span class="cmd">接口地址</span>：配置鉴定图片所用接口</li>
+            
+            <li><span class="strong">#ap设置去背景接口</span><span class="cmd">接口地址</span>：配置抠图所用接口</li>
+            
+            <li><span class="strong">#ap设置动漫化接口</span><span class="cmd">接口地址</span>：配置图片动漫化所用接口</li>
+            
+            <li><span class="strong">#ap设置图片转音乐接口</span><span class="cmd">接口地址</span>：配置图片转音乐接口</li>
+            
+            <li><span class="strong">#ap设置二次元美学接口</span><span class="cmd">接口地址</span>：配置二次元美学评分接口</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="cmd">百度图片审核</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li><span class="strong">#ap设置百度appid</span><span class="cmd">你的appid</span>：配置百度图片审核appid</li>
+            
+            <li><span class="strong">#ap设置百度apikey</span><span class="cmd">你的apikey</span>：配置百度图片审核apikey</li>
+            
+            <li><span class="strong">#ap设置百度secretkey</span><span class="cmd">你的secretkey</span>：配置百度图片审核secretkey</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="cmd">翻译</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li><span class="strong">#ap设置百度翻译id</span><span class="cmd">你的id</span>：配置百度翻译id</li>
+            
+            <li><span class="strong">#ap设置百度翻译key</span><span class="cmd">你的key</span>：配置百度翻译key</li>
+            
+            <li><span class="strong">#ap设置有道翻译id</span><span class="cmd">你的id</span>：配置有道翻译id</li>
+            
+            <li><span class="strong">#ap设置有道翻译key</span><span class="cmd">你的key</span>：配置有道翻译key</li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <p><span class="cmd">搜图</span></p>
+          
+          <ul class="sub-log-ul">
+            
+            <li><span class="strong">#ap设置搜图接口</span><span class="cmd">apikey</span>：配置搜图接口</li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+ 
+    <div class="copyright">Created By Yunzai-Bot<span class="version">v1.0.0</span> & ap-Plugin<span class="version">2.11.5</span></div>
+  </div>
+</body>
+
+</html>

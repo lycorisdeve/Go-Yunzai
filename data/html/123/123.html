@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>签到</title>
+    <style>
+    /* 偷懒 懒得建css文件*/
+      @font-face {
+        font-family: "宋体";
+        src: local("宋体");
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 130%;
+        background: url(https://t.lizina.top/pc);
+        /* bg api  https://api.caonm.net/api/dm/index.php*/
+        background-size: 150%;
+      }
+      .container {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .title {
+        height: 100px;
+        padding-left: 50px;
+        padding-top: 20px;
+        
+      }
+      .informations {
+        margin-top: 20px;
+        border: 1px solid aqua;
+        height: 500px;
+        background: white;
+        opacity: 0.7;
+        display: flex;
+      }
+      .avatar {
+        width: 40%;
+        height: 90%;
+        text-align: center;
+        align-items: center;
+        border-right: 2px solid black;
+      }
+      .sign-info {
+        width: 80%;
+        height: 100%;
+      }
+      .sign-info-up {
+        height: 10%;
+        margin-left: 40px;
+        line-height: 50px;
+        font-size: larger;
+        font-weight: 900;
+        font-family: "黑体";
+      }
+      .sign-info-down {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .sign-info-details {
+        width: 100%;
+        height: 90%;
+      }
+      .avatar-img {
+        width: 80%;
+        height: 120px;
+        border-radius: 100px;
+        margin-top: 130px;
+        opacity: 1;
+      }
+      .group-info {
+        height: 100%;
+        position: relative;
+        min-width: 300px;
+      }
+      p {
+        font-family: "楷体";
+        font-size: larger;
+        font-weight: 600;
+      }
+      /* 13 */
+      .loadbar {
+        width: 100%;
+        height: 30px;
+        border: 3px solid #212121;
+        border-radius: 20px;
+        position: relative;
+      }
+
+      .loadbar div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .loadbar div span,
+      .loadbar div i {
+        box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+        width: 0%;
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 20px;
+      }
+
+      .loadbar div i {
+        width: 100%;
+        animation: alternate;
+        -webkit-animation: move 0.8s linear infinite;
+        /* background: -webkit-linear-gradient(
+          left top,
+          #7ed047 0%,
+          #7ed047 25%,
+          #4ea018 25%,
+          #4ea018 50%,
+          #7ed047 50%,
+          #7ed047 75%,
+          #4ea018 75%,
+          #4ea018 100%
+        ); */
+        background: linear-gradient(to left, rgb(212, 38, 38), rgb(7, 7, 227));
+        /* background-size: 40px 40px; */
+      }
+      .icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+        font-size: 40px;
+      }
+      .mingyan {
+         font-weight: 500;
+    background: white;
+    margin-top: 0px;
+    max-width: 250px;
+    overflow: hidden;
+      }
+      .icon-list {
+        margin: 90px 20px 20px 20px;
+      }
+    </style>
+    <script src="E:\github\MyBot/plugins/one-js-plugin/resources/signin/iconfont.js"></script>
+     <script>
+      onload = function () {
+        // let hiddenBg = document.getElementById("hiddenBg");
+        let percent = document.getElementById("percent");
+        let days = document.getElementById("days");
+        let percentWidth = days.innerHTML;
+        if(percentWidth<=100){
+          percent.style.width = percentWidth + "%";
+        }else{
+          percent.style.width = "100%";
+        }
+    //   document.body.style.background=hiddenBg.innerHTML
+      };
+      
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+        <!--<div id="hiddenBg" style="display: none;"></div>-->
+      <div class="title">
+        <h1></h1>
+        <strong>QQ:1678527416</strong>
+        
+      </div>
+
+      <div class="informations">
+        <div class="sign-info">
+          <div class="sign-info-up">
+            <span
+              >你已经累计签到了<strong style="font-size: 40px; color: red" id="days"
+                >1</strong
+              >天</span
+            >
+          </div>
+          <div class="sign-info-down">
+            <div class="avatar">
+              <img
+                src="http://q1.qlogo.cn/g?b=qq&#38;nk=1678527416&#38;s=100&#38;t=1547904810"
+                alt=""
+                class="avatar-img"
+              />
+            </div>
+            <div class="sign-info-details">
+              <div style="margin: 100px auto auto 40px">
+                <p>当前<strong>好感度：</strong>3.25</p>
+                <div id="loadbar01" class="loadbar">
+                  <div>
+                    <span class="percent" id="percent">
+                      <i></i>
+                    </span>
+                  </div>
+                </div>
+                <p>好感度:+3.25</p>
+                <p>摩拉:+1000</p>
+                <p>原石:+60</p>
+                <strong>签到时间：2023-03-17 17:22:12</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grop-info">
+          <strong
+            style="text-align: center; font-size: 25px"
+          >
+            群好感度第<span style="font-size: 40px; color: red">1</span
+            >名
+          </strong>
+          <div style="margin-left: 20px">
+            <p>上次签到日期:2023-03-17</p>
+            <p>总摩拉:1000</p>
+            <p>总原石:7</p>
+            <p>抽卡次数:undefined</p>
+          </div>
+          <div class="icon-list">
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#icon-fire-copy"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#icon-water-copy"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-wind-copy"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#icon-thunder-copy"></use>
+            </svg>
+            <br />
+            <svg class="icon svg-icon" aria-hidden="true" style="margin-left:20px">
+              <use xlink:href="#icon-grass-copy"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#icon-ice-copy"></use>
+            </svg>
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlink:href="#icon-rock-copy"></use>
+            </svg>
+            <p class="mingyan"
+            >不管眼前有怎么样的障碍，那也无法阻止我前进的脚步。</p
+          >
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </body>
+</html>
