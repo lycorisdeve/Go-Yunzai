@@ -1,10 +1,10 @@
 # Go-Yunzai
 
 #### 介绍
-狗崽机器人，云崽机器人适配Go-cqhttp版！本领低微，维护是不可能维护的，下次一定！！！我的代码是屎山，不喜勿喷！！
+狗崽机器人，云崽机器人适配go-cqhttp版！需要一定的捣鼓、编程经验才能搞懂。本领低微，维护是不可能维护的，下次一定！！！
 
-#### 软件架构
-云崽改编版，简单适应了go-cqhttp
+#### 说明
+云崽改编版，简单适应了go-cqhttp！
 
 #### 安装教程
 
@@ -28,6 +28,7 @@
       # 反向WS Universal 地址
       # 注意 设置了此项地址后下面两项将会被忽略
       universal: ws://127.0.0.1:9090
+#############如果你缺少某项那肯定是你少选了0 3 其中一个##############
 ```
 
 大致配置如下：
@@ -174,23 +175,208 @@ servers:
 >环境准备： Windows or Linux，Node.js（[版本至少v16以上](http://nodejs.cn/download/)），[Redis](https://redis.io/docs/getting-started/installation/)
 
 1.克隆项目
-```
+```sh
 git clone --depth=1 -b main https://gitee.com/aurora-love/Go-Yunzai.git
 cd Go-Yunzai #进入Yunzai目录
 ```
 2.安装[pnpm](https://pnpm.io/zh/installation)，已安装的可以跳过
-```
+
+```sh
 npm install pnpm -g
 ```
 3.安装依赖
-```
+
+```sh
 pnpm install -P
 ```
 4.运行（首次运行按提示输入登录）
-```
+
+```shell
 node app
 ```
 
-#### 参与贡献
+#### 问题
 
-​	
+插件适配：很多插件中调用了oicq或icqq中的方法，如e.group.makeForwardMsg
+
+```javascript
+  if (e.isGroup) {
+            e.reply(
+              await e.group.makeForwardMsg(data_msg),
+              false,
+              { recallMsg: current_group_policy.isRecall ? current_group_policy.recallDelay : 0 }
+            );
+          }
+------------------------------------------------------------------------------------------------------------if (res.isnsfw) {
+          if (current_group_policy.isTellMaster) {
+            let msg = [
+              "【aiPainting】不合规图片：\n",
+              segment.image(`base64://${res.base64}`),
+              `\n来自${e.isGroup ? `群【${(await Bot.getGroupInfo(e.group_id)).group_name}】(${e.group_id})的` : ""}用户【${await getuserName(e)}】(${e.user_id})`,
+              `\n【Tags】：${paramdata.rawtag.tags}`,
+              `\n【nTags】：${paramdata.rawtag.ntags}`,
+            ]
+            Bot.pickUser(cfg.masterQQ[0]).sendMsg(msg);
+          }
+```
+
+​	注：代码来自ap插件的 app/ai_painting.js 中201行与263行
+
+这些方法可替换为Go-Yunzai\lib\go-cqhttp\api 中简单封装的方法，方法参数及详情请参考[Go-cqhttp文档][https://docs.go-cqhttp.org/api/#%E5%9F%BA%E7%A1%80%E4%BC%A0%E8%BE%93]，例：
+
+```js
+await Bot.getGroupInfo(e.group_id))
+=====================================================================================================
+await  groupProcess.get_group_info(group_id)
+```
+
+转发消息可参考 add.js中制作转发消息的思路，以及查看go-cqhttp的文档
+
+```js
+/* add.js*/
+async list() {
+    this.isGlobal = this.e?.msg.includes("全局");
+
+    let page = 1
+    let pageSize = 100
+    let type = 'list'
+
+    await this.getGroupId()
+    if (!this.group_id) return false
+
+    this.initTextArr()
+
+    let search = this.e.msg.replace(/#|＃|表情|词条|全局/g, '')
+
+    if (search.includes('列表')) {
+      page = search.replace(/列表/g, '') || 1
+    } else {
+      type = 'search'
+    }
+
+    let list = textArr[this.group_id]
+
+    if (lodash.isEmpty(list)) {
+      await this.e.reply('暂无表情')
+      return
+    }
+
+    let arr = []
+    for (let [k, v] of textArr[this.group_id]) {
+      if (type == 'list') {
+        arr.push({ key: k, val: v, num: arr.length + 1 })
+      } else if (k.includes(search)) {
+        /** 搜索表情 */
+        arr.push({ key: k, val: v, num: arr.length + 1 })
+      }
+    }
+
+    let count = arr.length
+    arr = arr.reverse()
+
+    if (type == 'list') {
+      arr = this.pagination(page, pageSize, arr)
+    }
+
+    if (lodash.isEmpty(arr)) {
+      return
+    }
+
+    let msg = []
+    let num = 0
+    for (let i in arr) {
+      if (num >= page * pageSize) break
+
+      let keyWord = await this.keyWordTran(arr[i].key)
+      if (!keyWord) continue
+
+      if (Array.isArray(keyWord)) {
+        keyWord.unshift(`${arr[i].num}、`)
+        keyWord.push('\n')
+        keyWord.forEach(v => msg.push(v))
+      } else if (keyWord.type) {
+        msg.push(`\n${arr[i].num}、`, keyWord, '\n\n')
+      } else {
+        msg.push(`${arr[i].num}、${keyWord}\n`)
+      }
+      num++
+    }
+
+    let end = ''
+    if (type == 'list' && count > 100) {
+      end = `更多内容请翻页查看\n如：#表情列表${Number(page) + 1}`
+    }
+
+    let title = `表情列表，第${page}页，共${count}条`
+    if (type == 'search') {
+      title = `表情${search}，${count}条`
+    }
+
+    let forwardMsg = await this.makeForwardMsg(Bot.uin, title, msg, end)
+
+    this.e.reply(forwardMsg)
+  }
+async makeForwardMsg(qq, title, msg, end = '') {
+    let nickname = Bot.nickname
+    if (this.e.isGroup) {
+      let info = await groupProcess.get_group_member_info(this.e.group_id, qq)
+      info = info.data.data
+      nickname = info.card === '' ? info.nickname : info.card
+    }
+    let userInfo = {
+      name: nickname,
+      uin: Bot.uin
+    }
+
+    let forwardMsg = [{
+      type: "node",
+      data: {
+        ...userInfo,
+        content: title
+      }
+    }
+    ]
+
+    let msgArr = lodash.chunk(msg, 40)
+    msgArr.forEach(v => {
+      v[v.length - 1] = lodash.trim(v[v.length - 1], '\n')
+      forwardMsg.push({
+        type: "node",
+        data: {
+          ...userInfo, content: messageUtil.toCqcode(v)
+        }
+      })
+    })
+
+    if (end) {
+      forwardMsg.push({
+        type: "node",
+        data: { ...userInfo, content: end }
+      })
+    }
+
+    return forwardMsg
+  }
+
+```
+
+神特么那么长的代码，总结就是转行成对应格式的数组，直接调用go-cqhttp的api 发出去就行
+
+其余的CQ码问题，去看[go-cqhttp文档][https://docs.go-cqhttp.org/cqcode/#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B]吧
+
+
+
+##  致谢
+
+| Nickname                                                     | Contribution         |
+| ------------------------------------------------------------ | -------------------- |
+| [GardenHamster](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2FGardenHamster%2FGenshinPray) | 模拟抽卡背景素材来源 |
+| [西风驿站](https://gitee.com/link?target=https%3A%2F%2Fbbs.mihoyo.com%2Fys%2Fcollection%2F839181) | 角色攻略图来源       |
+| [米游社友人A](https://gitee.com/link?target=https%3A%2F%2Fbbs.mihoyo.com%2Fys%2Fcollection%2F428421) | 角色突破素材图来源   |
+| [云崽Bot][https://gitee.com/yoimiya-kokomi/Yunzai-Bot]       | 喵佬的云崽仓库       |
+
+## 其他
+
+- 最后给个star或者爱发电，你的支持是不维护本项目的动力~~
+- 图片素材来源于网络，仅供交流学习使用
+- 严禁用于任何商业用途和非法行为
